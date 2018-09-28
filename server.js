@@ -91,10 +91,17 @@ app.get("/scrape", function (req, res) {
 
 app.get("/articles", function (req, res) {
     console.log("in articles route");
-    db.Article.find().then(function (articles) {
+    db.Article.find({ "saved": false }).then(function (articles) {
         res.json(articles);
     })
 });
+
+app.post("/articles", function(req, res) {
+    db.Article.deleteMany({ "saved": false })
+    .then(function() {
+        res.render("index");
+    })
+})
 
 app.get("/saved", function(req, res) {
     db.Article.find({ saved: true }).then(function(articles) {
@@ -139,6 +146,13 @@ app.post("/articles/:id", function (req, res) {
         })
     })
 });
+
+app.post("/comment/:id", function(req, res) {
+    db.Comment.update({ _id: req.params.id}, { $set: { title: req.body.title, body: req.body.body } })
+    .then(function() {
+        res.end();
+    })
+})
 
 // Start the server
 app.listen(PORT, function () {

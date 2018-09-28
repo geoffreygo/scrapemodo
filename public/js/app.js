@@ -71,3 +71,65 @@ $("#home").on("click", function(event) {
         renderArticles(data, false);
       })
 })
+
+$("#clearBtn").on("click", function(event) {
+    event.preventDefault();
+    $.ajax({
+        method: "POST",
+        url: "/articles"
+      }).then(function() {
+          setTimeout(location.reload(), 2000) ;
+      })
+})
+
+$(document).on("click", ".commentBtn", function(event) {
+    event.preventDefault();
+    var id = $(this).parent().attr("data-id");
+    console.log(id);
+    $.getJSON("/articles/" + id, function(data) {
+        console.log(data);
+        if (data.comment) {
+            $("#title").val(data.comment.title);
+            $("#comment").val(data.comment.body);
+            $("#saveComment").attr({"data-id": data.comment._id, "commented": "true"});
+            $("#commentModal").modal('show');
+        } else {
+            $("#commentModal").modal('show');
+            $("#saveComment").attr({"data-id": id});
+        }
+      })
+})
+
+$(document).on("click", "#saveComment", function (event) {
+    event.preventDefault();
+    var id = $(this).attr("data-id");
+    console.log(id);
+    var newComment = {
+        title: $("#title").val().trim(),
+        body: $("#comment").val().trim()
+    };
+    if ($(this).attr("commented")) {
+        $.ajax({
+            method: "POST",
+            url: "/comment/" + id,
+            data: newComment
+        })
+    } else {
+        $.ajax({
+            method: "POST",
+            url: "/articles/" + id,
+            data: newComment
+        })
+    }
+    $("#title").val("");
+    $("#comment").val("");
+    $("#commentModal").modal('hide');
+    $("#saveComment").attr({"data-id": "", "commented": "false"});
+})
+
+$(document).on("click", "#closeModal", function() {
+    $("#title").val("");
+    $("#comment").val("");
+    $("#commentModal").modal('hide');
+    $("#saveComment").attr({"data-id": "", "commented": "false"});
+})
