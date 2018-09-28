@@ -73,11 +73,9 @@ app.get("/scrape", function (req, res) {
             // console.log("RESULT:\n", result);
             db.Article.findOne({ title: result.title })
             .then(function(article) {
-                console.log("found: ", article);
                 if (!article) {
                     db.Article.create(result)
                     .then(function (dbArticle) {
-                        console.log(dbArticle);
                     })
                     .catch(function (err) {
                         console.log(err);
@@ -85,8 +83,8 @@ app.get("/scrape", function (req, res) {
                 }
             })           
         });
-        res.render("index"); 
-    });
+    })
+    res.end();
 });
 
 app.get("/articles", function (req, res) {
@@ -97,6 +95,7 @@ app.get("/articles", function (req, res) {
 });
 
 app.post("/articles", function(req, res) {
+    console.log("in delete route");
     db.Article.deleteMany({ "saved": false })
     .then(function() {
         res.render("index");
