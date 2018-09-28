@@ -1,0 +1,53 @@
+#headline {
+    height: 12rem;
+    width: 100%;
+    background-image: url("../images/tabletnews.jpg");
+    background-size: cover;
+    color: red;
+    font-weight: 900;
+}
+
+body {
+    background-color: #dfcfb8;
+}
+
+#scrapeBtn,
+#clearBtn {
+    margin-right: 2rem;
+}
+
+.pix {
+    width: 200px;
+    float: left;
+}
+
+.summaries {
+    float: left;
+}
+
+.card-header {
+    background-color: #695935;
+    color: white;
+}
+
+body a {
+    color: red;
+}
+
+.saveBtn,
+.scrapeBtn,
+.clearBtn, 
+.delBtn,
+.commentBtn {
+    background-color: red;
+}
+
+.footer {
+    height: 3rem;
+    line-height: 3rem;
+}
+
+#foottext,
+#foottainer {
+    margin: auto;
+}

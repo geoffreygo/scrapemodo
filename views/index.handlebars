@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="headnav">
+  <a class="navbar-brand" href="/">scrapemodo</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/" id="home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/saved" id="saved">Saved Articles</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <button class="btn btn-danger my-2 my-sm-0" id="scrapeBtn">Scrape new articles!</button>
+      <button class="btn btn-danger my-2 my-sm-0" id="clearBtn">Clear articles!</button>
+    </form>
+  </div>
+</nav>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col" id="headline">
+      <h1 class="display-2 text-center"><strong>scrapemodo</strong></h1>
+      <h4 class="text-center">GIZMODO Scraper</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div id="articles">
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Article comment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="title" class="col-form-label">Title:</label>
+              <input type="text" class="form-control" id="title">
+            </div>
+            <div class="form-group">
+              <label for="comment" class="col-form-label">Comment:</label>
+              <textarea class="form-control" id="comment"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" id="saveComment">Save comment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="container mx-auto" style="width: 200px" id="foottainer">
+      <span class="text-muted" id="foottext">scrapemodo &copy; 2018</span>
+    </div>
+  </footer>
+</div>
