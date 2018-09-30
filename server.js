@@ -37,6 +37,7 @@ app.get("/", function (req, res) {
 })
 
 app.get("/scrape", function (req, res) {
+    console.log("in scrape route");
     request("https://www.gizmodo.com/", function (err, response, html) {
         if (err) {
             console.log(err);
@@ -81,10 +82,10 @@ app.get("/scrape", function (req, res) {
                         console.log(err);
                     });
                 }
-            })           
+            })          
         });
-    })
-    res.end();
+        setTimeout(function() {res.sendStatus(200)}, 4500);
+    });
 });
 
 app.get("/articles", function (req, res) {
