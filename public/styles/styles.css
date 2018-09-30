@@ -35,8 +35,8 @@ body a {
 }
 
 .saveBtn,
-.scrapeBtn,
-.clearBtn, 
+#scrapeBtn,
+#clearBtn, 
 .delBtn,
 .commentBtn {
     background-color: red;
